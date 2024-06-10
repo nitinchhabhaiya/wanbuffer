@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+</head>
+<body>
+    
+    <div class="main">
+
+        <div class="registration" id="registrationForm">
+            <h1 class="text-center">Edit User</h1>
+            <div class="registration-form">
+                {% if status == 1 %}<span style="color: green;">{{ msg }}</span><br/>{% else %}<span style="color: red;">{{ msg }}</span><br/>{% endif %}
+                
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="fullname">Full Name <span style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="fullname" name="fullname" required value="{{ data.fullname }}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Mobile No <span style="color: red;">*</span></label>
+                            <input type="tel" class="form-control" id="mobile_no" name="mobile_no" oninvalid="this.setCustomValidity('Please enter Mobile Number')" oninput="this.setCustomValidity('')" required maxlength="10" minlength="10" value="{{ data.mobile_no }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Email <span style="color: red;">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" oninvalid="this.setCustomValidity('Please enter Email')" oninput="this.setCustomValidity('')" required value="{{ data.email }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="gender">Gender <span style="color: red;">*</span></label>
+                                <input type="radio" id="gender" name="gender" value="Male" required {% if data.gender == "Male" %}checked{% endif %}> Male
+                                <input type="radio" id="gender" name="gender" value="Female" required {% if data.gender == "Female" %}checked{% endif %}> Female
+                                <input type="radio" id="gender" name="gender" value="Other" required {% if data.gender == "Other" %}checked{% endif %}> Other
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-dark login-register form-control">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        $('#mobile_no').keyup(function (e) {
+            if (/\D/g.test(this.value)) {
+              this.value = this.value.replace(/\D/g, '')
+            }
+        });
+    </script>
+
+    <!-- Bootstrap Js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+WanBuffer:
+
+Practical task:
+
+start project before run to requirements.txt
+
+=> Home page URL:
+    http://127.0.0.1:8000/
+
+=> Add page URL:
+    http://127.0.0.1:8000/add
+
+=> Edit page URL:
+    http://127.0.0.1:8000/edit/16/
+
+=> Export all data 
+    download user data.xlsx
+
+=> import data URl : http://127.0.0.1:8000/import/data
+    add demo file name import user data.xlsx
+
+    import file then any row line error data into it create error file.
+    download error data.xlsx
